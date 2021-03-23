@@ -71,3 +71,19 @@
     color: whitesmoke;
     background-color: #6b4bf3;
 }
+
+.status-icon-active, .status-icon-disabled {
+    font-size: 30px;
+}
+
+.status-icon-active {
+    color: lightseagreen;
+}
+
+.status-icon-disabled {
+    color: mediumvioletred;
+}
+
+.status-name {
+    align-self: center;
+}
