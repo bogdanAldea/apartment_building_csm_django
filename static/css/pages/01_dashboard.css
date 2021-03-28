@@ -4,10 +4,18 @@
 /*================================================*/
 /*===           TOP SECTION - CONTENT A       ====*/
 /*================================================*/
+
+/*.row {*/
+/*    min-height: 130px;*/
+/*}*/
+
+.media {
+    align-items: center;
+}
+
 .top-card {
     border: none;
     border-radius: 0;
-    background: white;
     box-shadow:  var(--custom-shadows);
 }
 
@@ -15,7 +23,6 @@
     background-color: #6b4bf3;
     color: white;
 }
-
 .card-center {
     background-color: #009688;
 }
@@ -33,7 +40,7 @@
     color: white;
 }
 
-.info-card-text h3 {
+.info-card-text h3{
     font-family: var(--thin-font);
     font-size: 24px;
 }

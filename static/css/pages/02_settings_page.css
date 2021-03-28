@@ -61,3 +61,7 @@
 .status-name {
     align-self: center;
 }
+
+.util-branched {
+    padding: 0;
+}
