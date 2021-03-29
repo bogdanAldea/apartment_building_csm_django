@@ -66,6 +66,7 @@ class MutualUtil(models.Model):
     apartment       = models.ForeignKey(Apartment, null=True, on_delete=models.CASCADE)
     common_util     = models.ForeignKey(Utility, null=True, on_delete=models.CASCADE)
     util_type       = models.CharField(default='Mutual', max_length=20)
+    monthly_payment = models.FloatField(default=0, null=True)
 
     def __str__(self):
         return f'{self.common_util.name}: {self.apartment}'
@@ -85,6 +86,8 @@ class IndividualUtil(models.Model):
     apartment           = models.ForeignKey(Apartment, null=True, on_delete=models.CASCADE)
     individual_util     = models.ForeignKey(Utility, null=True, on_delete=models.CASCADE)
     util_type           = models.CharField(default='Individual', max_length=20)
+    monthly_payment     = models.FloatField(default=0, null=True)
+    status              = models.BooleanField(default=False, null=True, choices=STATUS)
 
     def __str__(self):
         return f'{self.individual_util.name}: {self.apartment}'
