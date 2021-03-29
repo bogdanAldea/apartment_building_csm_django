@@ -15,14 +15,14 @@
                     </thead>
 
                     <tbody class="general-table-body">
-                    {% for util in utils %}
+                    {% for util in mutual_utils %}
                         <tr class="general-table-row">
-                            <td class="ps-5">{{ util.name}}</td>
+                            <td class="ps-5">{{ util.common_util.name}}</td>
                             <td>{{ util.util_type}}</td>
-                            <td>{{ util.provider }}</td>
-                            <td>{{ util.contract_starts}}</td>
-                            <td>{{ util.contract_ends}}</td>
-                            <td>{{ util.util_tax }}</td>
+                            <td>{{ util.common_util.provider }}</td>
+                            <td>{{ util.common_util.contract_starts}}</td>
+                            <td>{{ util.common_util.contract_ends}}</td>
+                            <td>{{ util.common_util.util_tax_wage }}</td>
                             <td><a href="#" class="btn table-action-btn">Edit &rarr;</a></td>
                         </tr>
                     {% endfor %}

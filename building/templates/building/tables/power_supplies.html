@@ -15,15 +15,17 @@
                     </thead>
 
                     <tbody class="general-table-body">
+                    {% for supply in supply_data %}
                         <tr class="general-table-row">
-                            <td class="ps-5">-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
+                            <td class="ps-5">{{ supply.individual_util.name}}</td>
+                            <td>{{ supply.util_type }}</td>
+                            <td>{{ supply.individual_util.provider }}</td>
+                            <td>{{ supply.individual_util.contract_starts }}</td>
+                            <td>{{ supply.individual_util.contract_ends }}</td>
+                            <td>{{ supply.individual_util.util_tax_wage}}</td>
                             <td><a href="#" class="btn table-action-btn">Edit &rarr;</a></td>
                         </tr>
+                    {% endfor %}
                     </tbody>
 
                 </table>
