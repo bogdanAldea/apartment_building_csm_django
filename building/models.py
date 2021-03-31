@@ -4,9 +4,22 @@ from django.contrib.auth.models import AbstractUser
 
 # Define custom user model
 class User(AbstractUser):
-    # is_admin    = models.BooleanField(default=True)
-    # is_tenant   = models.BooleanField(default=False)
-    pass
+    is_admin    = models.BooleanField(default=False)
+    is_tenant   = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'{self.username}: {self.email}'
+
+
+class Tenant(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=50, null=True)
+    last_name = models.CharField(max_length=50, null=True)
+    email = models.EmailField(null=True)
+    phone = models.CharField(max_length=10, null=True)
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name} profile'
 
 
 # Create main parent app models
@@ -28,7 +41,7 @@ class Apartment(models.Model):
     )
 
     building                = models.ForeignKey(Building, on_delete=models.CASCADE)
-    tenant                  = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    tenant                  = models.OneToOneField(Tenant, null=True, blank=True, on_delete=models.CASCADE)
     number_of_persons       = models.IntegerField(default=0)
     payment_status          = models.BooleanField(default=True, null=True, choices=PAYMENT_STATUS)
     current_month_payment   = models.FloatField(default=0)

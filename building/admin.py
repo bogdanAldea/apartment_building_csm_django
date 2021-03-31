@@ -3,6 +3,8 @@ from .models import *
 
 
 admin.site.register(User)
+admin.site.register(Tenant)
+
 admin.site.register(Building)
 admin.site.register(Apartment)
 
