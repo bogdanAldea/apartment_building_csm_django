@@ -1,7 +1,12 @@
 {% load static %}
 
 <!--<table class="table common-utils-table table-borderless text-left mt-5 px-2">-->
-<table class="table general-table table-borderless text-left mt-5 px-2">
+
+{% if supply_data.count == 0 %}
+    <p>No supplies set yet.</p>
+
+{% else %}
+    <table class="table general-table table-borderless text-left mt-5 px-2">
 
     <thead class="general-table_head">
         <tr>
@@ -53,3 +58,5 @@
     </tbody>
 
 </table>
+
+{% endif %}

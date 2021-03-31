@@ -1,6 +1,9 @@
 {% load static %}
 
-<table class="table general-table table-borderless text-left mt-5 px-2">
+{% if mutual_utils.count == 0 %}
+    <p>No utils</p>
+{% else %}
+    <table class="table general-table table-borderless text-left mt-5 px-2">
 
                     <thead class="general-table_head">
                         <tr>
@@ -28,3 +31,4 @@
                     {% endfor %}
 
                 </table>
+{% endif %}
