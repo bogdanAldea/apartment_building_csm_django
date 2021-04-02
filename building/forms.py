@@ -25,3 +25,9 @@ class CreateUtilForm(ModelForm):
         model   = Utility
         fields  = '__all__'
         exclude = ['building']
+
+
+class UpdateUtilStatus(ModelForm):
+    class Meta:
+        model = IndividualUtil
+        fields = ['status']
