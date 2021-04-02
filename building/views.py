@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.forms import inlineformset_factory
 from .models import *
 from .forms import *
 from .config import UtilType
@@ -60,7 +61,20 @@ def admin_settings(request):
 
 # View for building's admin counters
 def admin_counters(request):
-    return render(request, 'building/counters.html')
+    logged_admin = User.objects.get(username=request.user.username)
+    cw_building = Building.objects.get(admin=logged_admin)
+
+    cold_water_main_index = cw_building.cold_water_main_index
+    hot_water_main_index = cw_building.hot_water_main_index
+    gas_power_main_index = cw_building.gas_power_main_index
+    heating_power_main_index = cw_building.heating_power_main_index
+
+    context = {
+        'main_indexes': [cold_water_main_index, hot_water_main_index,
+                         gas_power_main_index, heating_power_main_index],
+    }
+
+    return render(request, 'building/counters.html', context)
 
 
 # View for building's admin apartment payments
@@ -82,6 +96,7 @@ def register_page(request):
     return render(request, 'building/register.html', context)
 
 
+# View for building admin login
 def login_page(request):
     if request.method == "POST":
         username = request.POST.get('username')
@@ -95,6 +110,7 @@ def login_page(request):
     return render(request, 'building/login.html')
 
 
+# View for building admin logout
 def logout_user(request):
     logout(request)
     return redirect('building:login')
@@ -130,3 +146,22 @@ def add_utility(request):
 
     context = {'form': form}
     return render(request, 'building/add_utility.html', context)
+
+
+def update_apartment_util_status(request, pk):
+    logged_admin = User.objects.get(username=request.user.username)
+    cw_building = Building.objects.get(admin=logged_admin)
+
+    UtilFormSet = inlineformset_factory(Apartment, IndividualUtil,
+                                        fields=('status',), extra=0)
+
+    apartment = Apartment.objects.get(id=pk, building=cw_building)
+    formset = UtilFormSet(instance=apartment)
+    if request.method == 'POST':
+        formset = UtilFormSet(request.POST, instance=apartment)
+        if formset.is_valid():
+            formset.save()
+            return redirect('building:settings')
+
+    context = {'formset': formset}
+    return render(request, 'building/update_util_status.html', context)
