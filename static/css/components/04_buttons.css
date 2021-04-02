@@ -23,7 +23,14 @@
     padding: 15px 20px;
 }
 
-.add-feature-btn:hover {
+.add-new-util-btn {
+    font-size: 10px;
+    font-family: var(--main-font);
+    color: whitesmoke;
+    background-color: var(--main-accent);
+}
+
+.add-feature-btn:hover, .add-new-util-btn:hover {
     color: whitesmoke;
     background-color: #6b4bf3;
 }
