@@ -14,5 +14,9 @@ urlpatterns = [
     path('logout/', views.logout_user, name='logout'),
 
     path('create-residential/', views.add_residential, name='create_residential'),
+
     path('add-new-util/', views.add_utility, name='add_new_util'),
+
+    # test url
+    path('apartments/<int:pk>/', views.update_apartment_util_status, name='apartments'),
 ]
