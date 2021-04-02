@@ -52,7 +52,7 @@
 <!--                    </div>-->
 <!--                </td>-->
             {% endfor %}
-            <td><a href="#" class="btn table-action-btn">Set &rarr;</a></td>
+            <td><a href="{% url 'building:apartments' apartment.pk %}" class="btn table-action-btn">Set &rarr;</a></td>
         </tr>
     {% endfor %}
     </tbody>
