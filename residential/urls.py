@@ -19,5 +19,6 @@ urlpatterns = [
     path('create-residential/', views.CreateResidential, name='create_residential'),
     path('create-utility/', views.CreateUtility, name='create_utility'),
 
-    path('utility/<int:pk>/', views.UpdateUtilStatus, name='update_status'),
+    path('utility/apartment-<int:pk>/status-update/', views.UpdateUtilStatus, name='update_status'),
+    path('utility/<int:pk>/update/', views.UpdateUtilityGeneral, name='update-utility'),
 ]
