@@ -121,9 +121,9 @@ def CreateResidential(request):
     When a new user with admin privileges is registered, he's redirected to a form that handles
     creation of a new custom building object.
     """
-    form = CreateResidentialForm()
+    form = ResidentialForm()
     if request.method == 'POST':
-        form = CreateResidentialForm(request.POST)
+        form = ResidentialForm(request.POST)
         if form.is_valid():
             residential = form.save(commit=False)
             residential.admin = request.user
@@ -144,12 +144,12 @@ def CreateUtility(request):
     building = Building.objects.get(admin=logged_admin)
 
     # instantiate utility creation form
-    form = CreateUtilityForm()
+    form = UtilityForm()
 
     # check type of request method
     if request.method == 'POST':
         # pass request method to creation form
-        form = CreateUtilityForm(request.POST)
+        form = UtilityForm(request.POST)
         if form.is_valid():
             util = form.save(commit=False)
             # auto-assign the newly created util to current working building
@@ -197,3 +197,28 @@ def UpdateUtilStatus(request, pk):
         'formset': formset
     }
     return render(request, 'residential/forms/update_status.html', context)
+
+
+def UpdateUtilityGeneral(request, pk):
+    """
+    Defined view that handles the update of utilities that belong only to the
+    current working building.
+    """
+
+    # retrieve currently logged user and the building he's managing
+    logged_admin = User.objects.get(username=request.user.username)
+    building = Building.objects.get(admin=logged_admin)
+
+    # retrieve utilities used by current working building
+    utility = building.utility_set.get(id=pk)
+
+    form = UpdateUtilityForm(instance=utility)
+    if request.method == 'POST':
+        form = UpdateUtilityForm(request.POST, instance=utility)
+        if form.is_valid():
+            form.save()
+            return redirect('residential:residential-settings')
+
+    context = {'form': form}
+    return render(request, 'residential/forms/update_utility.html', context)
+
