@@ -9,14 +9,21 @@ class CreateUSerForm(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2']
 
 
-class CreateResidentialForm(ModelForm):
+class ResidentialForm(ModelForm):
     class Meta:
         model   = Building
         fields  = ['address', 'apartments_capacity']
 
 
-class CreateUtilityForm(ModelForm):
+class UtilityForm(ModelForm):
     class Meta:
         model = Utility
         fields = '__all__'
         exclude = ['building']
+
+
+class UpdateUtilityForm(ModelForm):
+    class Meta:
+        model = Utility
+        fields = '__all__'
+        exclude = ['building', 'util_type', 'tax_type']
