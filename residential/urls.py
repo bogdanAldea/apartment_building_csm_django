@@ -18,4 +18,6 @@ urlpatterns = [
     # crud operations
     path('create-residential/', views.CreateResidential, name='create_residential'),
     path('create-utility/', views.CreateUtility, name='create_utility'),
+
+    path('utility/<int:pk>/', views.UpdateUtilStatus, name='update_status'),
 ]
