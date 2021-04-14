@@ -1,6 +1,6 @@
 from django.db.models.signals import post_save
-from residential.models import Building, Utility
-from apartment.models import Apartment, IndividualUtil, MutualUtil
+from residential.models import Building, Utility, User
+from apartment.models import Apartment, IndividualUtil, MutualUtil, Tenant
 
 
 def generate_apartments(sender, instance, created, **kwargs):
