@@ -9,6 +9,7 @@ urlpatterns = [
     # sidebar menu urls
     path('', views.DashboardPage, name='dashboard'),
     path('settings/', views.SettingsPage, name='residential-settings'),
+    path('tenants/', views.TenantsPage, name='tenants'),
 
     # user/admin registration urls
     path('register/', views.RegisterPage, name='register'),
@@ -21,4 +22,8 @@ urlpatterns = [
 
     path('utility/apartment-<int:pk>/status-update/', views.UpdateUtilStatus, name='update_status'),
     path('utility/<int:pk>/update/', views.UpdateUtilityGeneral, name='update-utility'),
+
+    # test
+    path('test_form/<int:pk>/', views.AssignTenant, name='assign-tenant'),
+    path('tenant<int:pk>/update/', views.UpdateTenant, name='update-tenant'),
 ]
