@@ -6,7 +6,7 @@ class User(AbstractUser):
     """
     Defined custom user models with distinct roles
     """
-    pass
+    phone = models.CharField(max_length=10, null=True, blank=True)
 
 
 class Building(models.Model):
