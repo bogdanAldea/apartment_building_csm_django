@@ -4,15 +4,15 @@ from residential.models import *
 
 class Tenant(models.Model):
     """
-    Defined tenant profile model for user with "is_tenant" role. Profile allows users to view their assigned apartment
+    Defined tenant profile model for user. Profile allows users to view their assigned apartment
     object and gives control over some functionalities.
     """
 
     tenant      = models.OneToOneField(User, on_delete=models.CASCADE)
-    first_name  = models.CharField(max_length=50, null=True)
-    last_name   = models.CharField(max_length=50, null=True)
-    email       = models.EmailField(null=True)
-    phone       = models.CharField(max_length=10, null=True)
+    first_name  = models.CharField(max_length=50, null=True, blank=True)
+    last_name   = models.CharField(max_length=50, null=True, blank=True)
+    email       = models.EmailField(null=True, blank=True)
+    phone       = models.CharField(max_length=10, null=True, blank=True)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name} Profile'
@@ -31,7 +31,7 @@ class Apartment(models.Model):
     )
 
     building                = models.ForeignKey(Building, on_delete=models.CASCADE)
-    tenant                  = models.OneToOneField(Tenant, null=True, blank=True, on_delete=models.CASCADE)
+    tenant                  = models.OneToOneField(Tenant, null=True, blank=True, on_delete=models.SET_NULL)
     persons                 = models.PositiveIntegerField(default=0)
     payment_status          = models.BooleanField(default=True, null=True,  choices=PAYMENT_STATUS)
     current_month_payment   = models.FloatField(default=0)
