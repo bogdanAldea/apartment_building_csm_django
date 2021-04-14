@@ -3,9 +3,16 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
 from django.forms import inlineformset_factory
-from apartment.models import Apartment, IndividualUtil
+from apartment.models import Apartment, IndividualUtil, Tenant
 from .forms import *
 from .decorators import *
+
+
+def get_logged(request):
+    logged_admin = User.objects.get(username=request.user.username)
+    building = Building.objects.get(admin=logged_admin)
+    return logged_admin, building
+
 
 """DEFINED VIEWS FOR SIDEBAR/MAIN MENU LINKS"""
 @login_required(login_url='residential:login')
@@ -16,7 +23,8 @@ def DashboardPage(request):
     """
 
     # retrieve currently logged user with admin prvileges
-    user = User.objects.get(username=request.user.username)
+    # user = User.objects.get(username=request.user.username)
+    user, _ = get_logged(request)
 
     # check if this user has already a building under administration
     try:
@@ -45,8 +53,9 @@ def SettingsPage(request):
     """
 
     # retrieve building that has as admin the currently logged user
-    user = User.objects.get(username=request.user.username)
-    building = Building.objects.get(admin=user)
+    # user = User.objects.get(username=request.user.username)
+    # building = Building.objects.get(admin=user)
+    _, building = get_logged(request)
 
     # retrieve queryset for individual utilities & power supplies
     power_supplies = building.utility_set.filter(util_type='Individual')
@@ -64,16 +73,26 @@ def SettingsPage(request):
     }
     return render(request, 'residential/menu/residential_settings.html', context)
 
+def TenantsPage(request):
+    """
+    Defined view that renders all apartments and allows handling of tenant assignment through the template.
+    """
+
+    # retrieve building managed by the currently logged administrator.
+    _, building = get_logged(request)
+
+    context = {'building': building}
+    return render(request, 'residential/menu/tenants.html', context)
+
 
 """DEFINE VIEWS FOR ADMIN USER AUTHENTICATION"""
-@login_required(login_url='residential:login')
 @unauthenticated_user
 def RegisterPage(request):
     """
     Defined view that handles new user registration with admin privileges.
     """
 
-    group = Group.objects.get(name='administrator')
+    group = Group.objects.all()
 
     # instantiate new form for user registration
     form = CreateUSerForm()
@@ -83,9 +102,7 @@ def RegisterPage(request):
         # pass the request method to the form
         form = CreateUSerForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            user.groups.add(group)
-            user.save()
+            form.save()
             # redirect user to login page after registration form is submitted
             return redirect('building:login')
 
@@ -153,8 +170,9 @@ def CreateUtility(request):
     the model sends a signal which triggers the function that generates an utility instance for each existing apartment.
     """
 
-    logged_admin = User.objects.get(username=request.user.username)
-    building = Building.objects.get(admin=logged_admin)
+    # logged_admin = User.objects.get(username=request.user.username)
+    # building = Building.objects.get(admin=logged_admin)
+    _, building = get_logged(request)
 
     # instantiate utility creation form
     form = UtilityForm()
@@ -182,8 +200,10 @@ def UpdateUtilStatus(request, pk):
     """
 
     # retrieve currently logged user and the building he's managing
-    logged_admin = User.objects.get(username=request.user.username)
-    building = Building.objects.get(admin=logged_admin)
+    # logged_admin = User.objects.get(username=request.user.username)
+    # building = Building.objects.get(admin=logged_admin)
+
+    _, building = get_logged(request)
 
     # defined the formset that takes the apartment model as the parent argument
     # and the individual utility model as the child argument
@@ -225,8 +245,9 @@ def UpdateUtilityGeneral(request, pk):
     """
 
     # retrieve currently logged user and the building he's managing
-    logged_admin = User.objects.get(username=request.user.username)
-    building = Building.objects.get(admin=logged_admin)
+    # logged_admin = User.objects.get(username=request.user.username)
+    # building = Building.objects.get(admin=logged_admin)
+    _, building = get_logged(request)
 
     # retrieve utilities used by current working building
     utility = building.utility_set.get(id=pk)
@@ -241,3 +262,63 @@ def UpdateUtilityGeneral(request, pk):
     context = {'form': form}
     return render(request, 'residential/forms/update_utility.html', context)
 
+
+def AssignTenant(request, pk):
+    """
+    Defined view that handles the tenant profile creation and apartment assignment.
+    View uses already created custom CreateUserFrom to create a new user placed in the
+    tenant group.
+    """
+
+    _, building = get_logged(request)
+
+    form = CreateTenant()
+    if request.method == 'POST':
+        form = CreateTenant(request.POST)
+        if form.is_valid():
+            user_as_tenant = form.save()
+
+            # auto assign to group 'tenant'
+            group = Group.objects.get(name='tenant')
+            user_as_tenant.groups.add(group)
+
+            # create new tenant objects/profile
+            tenant = Tenant.objects.create(
+                tenant=user_as_tenant,
+                first_name=user_as_tenant.first_name,
+                last_name=user_as_tenant.last_name,
+                email=user_as_tenant.email,
+                phone=user_as_tenant.phone
+            )
+
+            # filter apartment objects,
+            # return the one belonging to current working building,
+            # assign newly created tenant
+            Apartment.objects.filter(id=pk, building=building).update(tenant=tenant)
+            user_as_tenant.save()
+            return redirect('residential:tenants')
+
+    context = {'form': form}
+    return render(request, 'residential/forms/assign_tenant.html', context)
+
+
+def UpdateTenant(request, pk):
+    """
+    Defined view that allows tenant selection through the template
+    and allows information updates.
+    """
+
+    # retrieve building manager by the currently log administrator
+    _, building = get_logged(request)
+
+    # instantiate tenant form
+    apartment = building.apartment_set.get(id=pk)
+    form = CreateTenant(instance=apartment.tenant)
+    if request.method == 'POST':
+        form = CreateTenant(request.POST, instance=apartment.tenant)
+        if form.is_valid():
+            user = form.save()
+            return redirect('residential:tenants')
+
+    context = {'form': form}
+    return render(request, 'residential/forms/update_tenant.html', context)
