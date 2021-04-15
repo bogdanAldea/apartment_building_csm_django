@@ -20,7 +20,7 @@
     </thead>
 
     <tbody class="general-table-body">
-    {% for apartment in apartments %}
+    {% for apartment in building.apartment_set.all %}
         <tr class="general-table-row">
             <td>{{ apartment.pk }}</td>
             <td>{{ apartment.tenant.email }}</td>
