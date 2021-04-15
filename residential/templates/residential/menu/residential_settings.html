@@ -26,16 +26,6 @@
                 </button>
             </li>
 
-            <li class="nav-item" role="presentation">
-                <button class="nav-link selector-pill-btn"
-                        id="pills-apartments-status-tab"
-                        data-bs-toggle="pill" data-bs-target="#pills-apartment-status"
-                        type="button" role="tab" aria-controls="pills-apartment-status"
-                        aria-selected="false">
-                    Apartment supply status
-                </button>
-            </li>
-
         </ul>
 
         <div class="tab-content" id="pills-tabContent">
@@ -45,10 +35,6 @@
 
             <div class="table-tab tab-pane fade" id="pills-supplies" role="tabpanel" aria-labelledby="pills-power-supplies-tab">
                 {%  include 'residential/tables/individual_utils.html' %}
-            </div>
-
-            <div class="table-tab tab-pane fade" id="pills-apartment-status" role="tabpanel" aria-labelledby="pills-apartments-tab">
-                {% include 'residential/tables/apartment_supply_status_list.html' %}
             </div>
         </div>
     </div>
