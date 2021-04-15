@@ -24,30 +24,17 @@
             <h6 class="sidebar-menu-item">Main Counters</h6>
         </a>
 
+        {% url 'residential:tenants'  as url %}
+            <a href="{{ url }}" class="nav-link list-group-item, list-group-item-action text-center
+                                {% if request.path == url %}active{% endif %}">
+                        <i class="menu-icon las la-door-closed"></i>
+                <h6 class="sidebar-menu-item">Apartments</h6>
+            </a>
+
         <a href="#" class="nav-link list-group-item, list-group-item-action text-center">
                     <i class="menu-icon lab la-cc-mastercard"></i>
             <h6 class="sidebar-menu-item">Payments</h6>
         </a>
-
-        {% url 'residential:tenants'  as url %}
-        <a href="{{ url }}" class="nav-link list-group-item, list-group-item-action text-center
-                            {% if request.path == url %}active{% endif %}">
-                    <i class="menu-icon lab la-cc-mastercard"></i>
-            <h6 class="sidebar-menu-item">Tenants</h6>
-        </a>
-
-{#        <div class="sidebar-footer"></div>#}
-{#            <div class="nav-section-label">#}
-{#                <h6 class="nav-label">Powered by</h6>#}
-{#            </div>#}
-{##}
-{#            <div class="powered-by-container mt-4">#}
-{#                 <i class="tech-icon lab la-python me-2"></i>#}
-{#                 <i class="tech-icon lab la-bootstrap me-2"></i>#}
-{#                 <i class="tech-icon lab la-html5 me-2"></i>#}
-{#                 <i class="tech-icon lab la-css3 me-2"></i>#}
-{#            </div>#}
-{#        </div>#}
 
     </div>
 </nav>
