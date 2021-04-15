@@ -9,7 +9,8 @@ urlpatterns = [
     # sidebar menu urls
     path('', menu.DashboardPage, name='dashboard'),
     path('settings/', menu.SettingsPage, name='residential-settings'),
-    path('apartments/', menu.TenantsPage, name='tenants'),
+    path('apartments/', menu.ApartmentsPage, name='tenants'),
+    path('payments/', menu.PaymentsPage, name='payments'),
 
     # user/admin registration urls
     path('register/', auth.RegisterPage, name='register'),
