@@ -13,8 +13,9 @@
     padding: 64px;
 }
 
-.form-row {
+.field-row {
     height: inherit;
+    margin-bottom: 25px;
 }
 
 .title {
