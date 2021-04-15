@@ -10,12 +10,13 @@ User = get_user_model()
 class CreateUSerForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['username', 'email', 'groups', 'password1', 'password2']
+        fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
 
 
 class CreateTenant(CreateUSerForm):
     class Meta(CreateUSerForm.Meta):
-        fields = ['first_name', 'last_name', 'username', 'email', 'phone', 'password1', 'password2']
+        fields = '__all__'
+        exclude = ['groups']
 
 
 class ResidentialForm(ModelForm):
