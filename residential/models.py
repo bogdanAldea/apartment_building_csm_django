@@ -19,17 +19,39 @@ class Building(models.Model):
     address                 = models.CharField(max_length=100, null=True)
     apartments_capacity     = models.PositiveIntegerField()
 
-    # cold water main index
+    # cold water main index & payment
     cold_water_main_index       = models.IntegerField(default=0, null=True)
-    # hot water main index
+    cold_water_main_payment     = models.FloatField(default=0, null=True)
+
+    # hot water main index & payment
     hot_water_main_index        = models.IntegerField(default=0, null=True)
-    # gas power main index
+    hot_water_main_payment      = models.FloatField(default=0, null=True)
+
+    # gas power main index & payment
     gas_power_main_index        = models.IntegerField(default=0, null=True)
-    # heating power main index
+    gas_power_main_payment      = models.FloatField(default=0, null=True)
+
+    # heating power main index & payment
     heating_power_main_index    = models.IntegerField(default=0, null=True)
+    heating_power_main_payment    = models.FloatField(default=0, null=True)
 
     def __str__(self):
         return self.address
+
+    def total_expenses(self):
+        total_expenses = 0
+        for apartment in self.apartment_set.all():
+            total_expenses += apartment.current_month_payment()
+        return total_expenses
+
+    def committed_expenses(self):
+        return self.cold_water_main_payment     + self.hot_water_main_payment + \
+               self.gas_power_main_payment      + self.heating_power_main_payment
+
+    def profit_loss_report(self):
+        total       = self.total_expenses()
+        committed   = self.committed_expenses()
+        return total - committed
 
 
 class Utility(models.Model):
