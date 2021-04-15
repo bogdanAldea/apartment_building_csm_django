@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <div class="row row-body">
-                        <h4>10024.32</h4>
+                        <h4>{{ building.total_expenses }}</h4>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <div class="row row-body">
-                        <h4>10024.32</h4>
+                        <h4>{{ building.committed_expenses }}</h4>
                     </div>
                 </div>
             </div>
@@ -52,11 +52,15 @@
                             <h6 class="m-0 card-title">Profit / Loss</h6>
                         </div>
                         <div class="col-3 col-head col-head-icon my-auto">
-                            <i class="las la-sort-amount-down info-card-icon icon-left"></i>
+                            {% if building.profit_loss_report > 0 %}
+                                <i class="las la-sort-amount-up info-card-icon positive"></i>
+                            {% else %}
+                                <i class="las la-sort-amount-down info-card-icon negative"></i>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="row row-body">
-                        <h4>10024.32</h4>
+                        <h4>{{ building.profit_loss_report }}</h4>
                     </div>
                 </div>
             </div>
