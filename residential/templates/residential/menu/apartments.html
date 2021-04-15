@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-    <title>Tenants Settings</title>
+    <title>Apartments Settings</title>
 
     <div class="container-fluid tenants-panel">
 
@@ -44,13 +44,13 @@
 
         <!-- DEFINE TAB CONTENTS -->
         <div class="tab-content" id="pills-tabContent">
-            <div class="table-tab tab-pane fade show active" id="pills-status" role="tabpanel" aria-labelledby="pills-util-status-tab">
+            <div class="table-content tab-pane fade show active" id="pills-status" role="tabpanel" aria-labelledby="pills-util-status-tab">
                 {% include 'residential/tables/apartment_supply_status_list.html' %}
             </div>
-            <div class="table-tab tab-pane fade active" id="pills-index-counters" role="tabpanel" aria-labelledby="pills-util-counters-tab">
-
+            <div class="table-content tab-pane fade active" id="pills-index-counters" role="tabpanel" aria-labelledby="pills-util-counters-tab">
+                {% include 'residential/tables/utility_index_counters.html' %}
             </div>
-            <div class="table-tab tab-pane fade active" id="pills-assign-tenant" role="tabpanel" aria-labelledby="pills-assign-tenant-tab">
+            <div class="table-content tab-pane fade active" id="pills-assign-tenant" role="tabpanel" aria-labelledby="pills-assign-tenant-tab">
                 {% include 'residential/tables/assign_tenant.html' %}
             </div>
         </div>
