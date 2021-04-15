@@ -11,7 +11,7 @@ def RegisterPage(request):
     Defined view that handles new user registration with admin privileges.
     """
 
-    group = Group.objects.all()
+    group = Group.objects.get(name='administrator')
 
     # instantiate new form for user registration
     form = CreateUSerForm()
@@ -21,7 +21,9 @@ def RegisterPage(request):
         # pass the request method to the form
         form = CreateUSerForm(request.POST)
         if form.is_valid():
-            form.save()
+            new_admin_user = form.save()
+            new_admin_user.groups.add(group)
+            new_admin_user.save()
             # redirect user to login page after registration form is submitted
             return redirect('building:login')
 
