@@ -1,10 +1,12 @@
 from django.forms import inlineformset_factory
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from residential.views.menu import get_logged
 from residential.forms import UpdateUtilityForm, CreateTenant
 from apartment.models import Apartment, IndividualUtil
 
 
+@login_required(login_url='residential:login')
 def UpdateUtilStatus(request, pk):
     """
     Defined view that handles the update of selected apartment's utility status
@@ -49,6 +51,7 @@ def UpdateUtilStatus(request, pk):
     return render(request, 'residential/forms/update_status.html', context)
 
 
+@login_required(login_url='residential:login')
 def UpdateUtilityGeneral(request, pk):
     """
     Defined view that handles the update of utilities that belong only to the
@@ -74,6 +77,7 @@ def UpdateUtilityGeneral(request, pk):
     return render(request, 'residential/forms/update_utility.html', context)
 
 
+@login_required(login_url='residential:login')
 def UpdateTenant(request, pk):
     """
     Defined view that allows tenant selection through the template

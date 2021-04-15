@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from residential.forms import *
 from residential.views.menu import get_logged
 from apartment.models import Tenant, Apartment
 
 
+@login_required(login_url='residential:login')
 def CreateResidential(request):
     """
     Defined View that handles residential building creation.
@@ -24,6 +26,7 @@ def CreateResidential(request):
     return render(request, 'residential/forms/create_residential.html', context)
 
 
+@login_required(login_url='residential:login')
 def CreateUtility(request):
     """
     Defined view that handles creation of a new general utility. After a new utility instance is created,
@@ -52,6 +55,7 @@ def CreateUtility(request):
     return render(request, 'residential/forms/create_utility.html', context)
 
 
+@login_required(login_url='residential:login')
 def AssignTenant(request, pk):
     """
     Defined view that handles the tenant profile creation and apartment assignment.

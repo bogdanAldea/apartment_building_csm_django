@@ -8,13 +8,14 @@ def get_logged(request):
     return logged_admin, building
 
 
+@login_required(login_url='residential:login')
 def DashboardPage(request):
     """
     Defined view function that handles the rendering of the data required by the
     dashboard.
     """
 
-    # retrieve currently logged user with admin prvileges
+    # retrieve currently logged user with admin privileges
     user, _ = get_logged(request)
 
     # check if this user has already a building under administration
@@ -38,6 +39,7 @@ def DashboardPage(request):
     return render(request, 'residential/menu/dashboard.html', context)
 
 
+@login_required(login_url='residential:login')
 def SettingsPage(request):
     """
     Defined view that renders data for the building settings page.
@@ -63,6 +65,7 @@ def SettingsPage(request):
     return render(request, 'residential/menu/residential_settings.html', context)
 
 
+@login_required(login_url='residential:login')
 def TenantsPage(request):
     """
     Defined view that renders all apartments and allows handling of tenant assignment through the template.
