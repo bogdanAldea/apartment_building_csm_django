@@ -39,6 +39,10 @@ class Apartment(models.Model):
     def __str__(self):
         return f'Apartment {self.id}'
 
+    @property
+    def get_persons(self):
+        return self.persons
+
     def get_total_individual_utils(self):
         total = 0
         for util in self.individualutil_set.all():
@@ -65,10 +69,28 @@ class MutualUtil(models.Model):
 
     apartment       = models.ForeignKey(Apartment, null=True, on_delete=models.CASCADE)
     util            = models.ForeignKey(Utility, null=True, on_delete=models.CASCADE)
-    monthly_payment = models.FloatField(default=0, null=True)
 
     def __str__(self):
         return f'{self.util.name}: {self.apartment}'
+
+    def get_monthly_payment(self):
+        util_type   = self.util.get_util_type
+        tax_wage    = self.util.get_tax_wage
+
+        persons     = self.apartment.get_persons
+        capacity    = self.apartment.building.get_capacity
+
+        payment = float()
+        if util_type    == 'Per Person':
+            payment = persons * tax_wage
+
+        elif util_type  == 'Per Apartment':
+            try:
+                payment = tax_wage / capacity
+            except ZeroDivisionError:
+                payment = float(0)
+
+        return payment
 
 
 class IndividualUtil(models.Model):
@@ -84,9 +106,11 @@ class IndividualUtil(models.Model):
 
     apartment           = models.ForeignKey(Apartment, null=True, on_delete=models.CASCADE)
     util                = models.ForeignKey(Utility, null=True, on_delete=models.CASCADE)
-    monthly_payment     = models.FloatField(default=0, null=True)
     index_counter       = models.IntegerField(default=0, null=True)
     status              = models.BooleanField(default=False, null=True, blank=True, choices=STATUS)
 
     def __str__(self):
         return f'{self.util.name}: {self.apartment}'
+
+    def get_monthly_payment(self):
+        return self.index_counter * self.util.get_tax_wage
