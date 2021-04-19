@@ -15,8 +15,7 @@ class CreateUSerForm(UserCreationForm):
 
 class CreateTenant(CreateUSerForm):
     class Meta(CreateUSerForm.Meta):
-        fields = '__all__'
-        exclude = ['groups']
+        pass
 
 
 class ResidentialForm(ModelForm):
