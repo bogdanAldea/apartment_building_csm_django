@@ -52,7 +52,7 @@
                             <h6 class="m-0 card-title">Profit / Loss</h6>
                         </div>
                         <div class="col-3 col-head col-head-icon my-auto">
-                            {% if building.profit_loss_report > 0 %}
+                            {% if building.profit_loss_report >= 0 %}
                                 <i class="las la-sort-amount-up info-card-icon positive"></i>
                             {% else %}
                                 <i class="las la-sort-amount-down info-card-icon negative"></i>
@@ -77,7 +77,7 @@
                         </div>
                     </div>
                     <div class="row row-body">
-                        <h4>3 / 7</h4>
+                        <h4>{{ collected|length }} / {{ building.apartment_set.all|length }}</h4>
                     </div>
                 </div>
             </div>
