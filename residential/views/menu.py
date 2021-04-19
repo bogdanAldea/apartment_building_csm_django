@@ -16,7 +16,7 @@ def DashboardPage(request):
     """
 
     # retrieve currently logged user with admin privileges
-    user, _ = get_logged(request)
+    user = request.user
 
     # check if this user has already a building under administration
     try:
@@ -87,7 +87,11 @@ def PaymentsPage(request):
     # retrieve building managed by the currently logged administrator.
     _, building = get_logged(request)
 
+    # queryset of apartments with payment collected
+    collected = building.apartment_set.filter(payment_status=True)
 
-
-    context = {'building': building}
+    context = {
+        'building': building,
+        'collected': collected
+    }
     return render(request, 'residential/menu/payments.html', context)
