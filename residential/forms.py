@@ -24,6 +24,12 @@ class ResidentialForm(ModelForm):
         fields  = ['address', 'apartments_capacity']
 
 
+class ResidentialMainCounters(ModelForm):
+    class Meta:
+        model = Building
+        fields = ['cold_water_main_index', 'hot_water_main_index', 'gas_power_main_index', 'heating_power_main_index']
+
+
 class UtilityForm(ModelForm):
     class Meta:
         model = Utility
