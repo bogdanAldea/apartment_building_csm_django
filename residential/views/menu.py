@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from residential.models import User, Building
 from residential.decorators import allowed_users
+from residential.forms import ResidentialMainCounters
 
 def get_logged(request):
     logged_admin = User.objects.get(username=request.user.username)
@@ -65,6 +66,28 @@ def SettingsPage(request):
         'mutual_utils': mutual_utils,
     }
     return render(request, 'residential/menu/residential_settings.html', context)
+
+
+@allowed_users(user_roles=['administrator'], redirect_link='')
+@login_required(login_url='residential:login')
+def MainCountersPage(request):
+    """
+    Defined view that handles the update of main utility index counters
+    that stores the index consumption of the entre building.
+    """
+
+    # retrieve building managed by the currently logged user
+    _, building = get_logged(request)
+
+    form = ResidentialMainCounters(instance=building)
+    if request.method == 'POST':
+        form = ResidentialMainCounters(request.POST, instance=building)
+        if form.is_valid():
+            form.save()
+            return redirect('residential:main_counters')
+
+    context = {'form': form}
+    return render(request, 'residential/menu/main_counters.html', context)
 
 
 @allowed_users(user_roles=['administrator'], redirect_link='')
