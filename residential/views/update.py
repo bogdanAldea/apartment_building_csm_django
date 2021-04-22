@@ -1,9 +1,34 @@
 from django.forms import inlineformset_factory
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from residential.models import MainUtil
 from residential.views.menu import get_logged
-from residential.forms import UpdateUtilityForm, CreateTenant
+from residential.forms import UpdateUtilityForm, CreateTenant, UpdateMainUtil
+from residential.models import Utility, MainUtil
 from apartment.models import Apartment, IndividualUtil
+
+
+def UpdateMainCounters(request, pk):
+    """
+
+    """
+    _, building = get_logged(request)
+    utility = MainUtil.objects.get(util__building=building, id=pk)
+    counters = MainUtil.objects.filter(util__building=building)
+
+    form = UpdateMainUtil(instance=utility)
+    if request.method == 'POST':
+        form = UpdateMainUtil(request.POST, instance=utility)
+        if form.is_valid():
+            form.save()
+            return redirect('residential:main_counters')
+
+    context = {
+        'form': form,
+        'utility': utility,
+        'counters': counters
+    }
+    return render(request, 'residential/forms/update_main_counters.html', context)
 
 
 @login_required(login_url='residential:login')
