@@ -2,10 +2,11 @@ from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
 from .models import (
-        Building, Utility
+        Building, Utility, MainUtil
 )
 
 User = get_user_model()
+
 
 class CreateUSerForm(UserCreationForm):
     class Meta:
@@ -24,12 +25,6 @@ class ResidentialForm(ModelForm):
         fields  = ['address', 'apartments_capacity']
 
 
-class ResidentialMainCounters(ModelForm):
-    class Meta:
-        model = Building
-        fields = ['cold_water_main_index', 'hot_water_main_index', 'gas_power_main_index', 'heating_power_main_index']
-
-
 class UtilityForm(ModelForm):
     class Meta:
         model = Utility
@@ -42,3 +37,9 @@ class UpdateUtilityForm(ModelForm):
         model = Utility
         fields = '__all__'
         exclude = ['building', 'util_type', 'tax_type']
+
+
+class UpdateMainUtil(ModelForm):
+    class Meta:
+        model = MainUtil
+        fields = ['index_counter']
