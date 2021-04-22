@@ -1,5 +1,6 @@
 from django.urls import path
 from residential.views import menu, auth, create, update
+from apartment import views
 
 
 app_name = 'residential'
@@ -30,4 +31,5 @@ urlpatterns = [
     path('counter/<int:pk>/update', update.UpdateMainCounters, name='update-main-counter'),
 
     path('apartment-<int:pk>/update-tenant/', update.UpdateTenant, name='update-tenant'),
+    path('apartment/<int:pk>/counters', views.UpdateApartmentCounters, name='update-counter')
 ]
