@@ -32,6 +32,17 @@ class Building(models.Model):
             total_expenses += apartment.current_month_payment()
         return total_expenses
 
+    def committed_expenses(self):
+        committed_expenses = 0
+        for utility in self.utility_set.all():
+            main = utility.mainutil_set.get()
+            committed_expenses += main.get_payment()
+        return committed_expenses
+
+    def profit_loss_report(self):
+        total = self.total_expenses()
+        commited = self.committed_expenses()
+        return total - commited
 
 class Utility(models.Model):
     """
@@ -78,6 +89,9 @@ class Utility(models.Model):
 class MainUtil(models.Model):
     util = models.ForeignKey(Utility, on_delete=models.CASCADE)
     index_counter = models.IntegerField(default=0, null=True)
+
+    def get_payment(self):
+        return self.util.tax_or_wage * self.index_counter
 
     def __str__(self):
         return f'{self.util.name} counter'
