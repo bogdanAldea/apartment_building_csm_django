@@ -1,8 +1,7 @@
 {% load static %}
 
-
-
-<table class="table table-borderless general-table mutual-utils-table">
+{% if mutual_utils %}
+    <table class="table table-borderless general-table mutual-utils-table">
 
     <thead class="general-table-head">
         <tr class="general-table-title-row">
@@ -39,3 +38,11 @@
     </tbody>
 
 </table>
+
+{% else %}
+    <div class="text-center">
+        <h4>Your building has no mutual utilities yet.</h4>
+        <a href="{% url 'residential:create_utility' %}" class="btn add-mutual-util-btn">Add a utility</a>
+    </div>
+
+{% endif %}
