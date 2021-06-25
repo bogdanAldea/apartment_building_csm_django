@@ -36,3 +36,35 @@
     color: white;
 }
 
+.index-icon {
+    font-size: 24px;
+}
+
+.index-title {
+    font-family: var(--light-font);
+    font-size: 14px;
+    color: var(--dark);
+}
+
+.index-counter {
+    font-family: var(--bold-font);
+    font-size: 24px;
+    color: var(--dark);
+}
+
+.cold-water-icon {
+    color: var(--accent);
+}
+
+.hot-water-icon {
+    color: orangered;
+}
+
+.gas-power-icon {
+    color: lightseagreen;
+}
+
+.heating-power-icon {
+    color: coral;
+}
+
