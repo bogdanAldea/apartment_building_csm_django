@@ -1,0 +1,6 @@
+.export-table-btn {
+    font-size: 11px;
+    font-family: var(--medium-font);
+    background-color: var(--accent);
+    color: var(--light);
+}
