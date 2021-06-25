@@ -23,3 +23,34 @@ class Building(models.Model):
 
     def __repr__(self):
         return f"{self.street_name}, {self.street_number}"
+
+
+class Utility(models.Model):
+    """
+    Defines model that describes a general utility used bu either an entire building, or individually
+    by an apartment object.
+    """
+
+    PROVIDERS = (
+        ('City', 'City'),
+        ('Private', 'Private')
+    )
+
+    TAX_TYPE = (
+        (True, 'Per Person'),
+        ('False', 'Per Apartment')
+    )
+
+    UTIL_TYPE = (
+        ('Mutual', 'Mutual'),
+        ('Individual', 'Individual')
+    )
+
+    name            = models.CharField(max_length=30, null=True)
+    util_type       = models.CharField(max_length=20, null=True, choices=UTIL_TYPE)
+    provider        = models.CharField(max_length=20, null=True, choices=PROVIDERS)
+    contract_starts = models.DateField(null=True, blank=True)
+    contract_ends   = models.DateField(null=True, blank=True)
+    tax_or_wage     = models.FloatField(default=0, null=True)
+    tax_type        = models.BooleanField(null=True, choices=TAX_TYPE)
+    building        = models.ForeignKey(Building, on_delete=models.CASCADE)
