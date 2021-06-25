@@ -1,6 +1,22 @@
-.export-table-btn {
+@import "../00_design_system/00_system_package.css";
+
+/*  TABLE ACTION BUTTON */
+
+.general-table-btn {
     font-size: 11px;
     font-family: var(--medium-font);
     background-color: var(--accent);
     color: var(--light);
+}
+
+.utility-icon {
+    font-size: 18px;
+}
+
+.edit-icon-btn {
+    color: var(--accent);
+}
+
+.delete-icon-btn {
+    color: orangered;
 }

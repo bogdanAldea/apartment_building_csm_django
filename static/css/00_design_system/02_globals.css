@@ -17,6 +17,27 @@ body {
     margin-right: 50px;
 }
 
+.dashboard--panel, .settings--panel {
+    margin-top: 150px;
+}
+
 a {
     text-decoration: none;
+}
+
+/*================================================*/
+/*===           PILLS NAVIGATION              ====*/
+/*================================================*/
+
+.nav-pills .selector-pill-btn.active {
+    background-color: var(--accent);
+    font-size: 12px;
+    border: none;
+}
+
+.nav-pills .nav-link {
+    color: var(--dark);
+    font-family: var(--regular-font);
+    font-size: 12px;
+    border: none;
 }
