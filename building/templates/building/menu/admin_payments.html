@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <title>Payments</title>
+
+    <div class="container-fluid payments--panel content--panel">
+        <div class="row main-row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                <div class="card payments-card total">
+                            <div class="card-content my-auto ">
+                                <div class="card-body">
+                                    <div class="media">
+                                        <div class="media-title">
+                                            <div>
+                                                <i class='bx bxs-dollar-circle total-icon payments-icon'></i>
+                                                <span class="card-label">Total Expenses</span>
+                                            </div>
+
+                                            <div class="card-content">
+                                                <h5>52.000.365</h5>
+                                                <span class="card-info">+1.226 than Last Month &uarr;</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                <div class="card payments-card committed">
+                            <div class="card-content my-auto ">
+                                <div class="card-body">
+                                    <div class="media">
+                                        <div class="media-title">
+                                            <div>
+                                                <i class='bx bxs-file committed-icon payments-icon'></i>
+                                                <span class="card-label">Committed Expenses</span>
+                                            </div>
+
+                                            <div class="card-content">
+                                                <h5>52.001.365</h5>
+                                                <span class="card-info">-3.226 than Last Month &darr;</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                <div class="card payments-card profit-loss">
+                            <div class="card-content my-auto ">
+                                <div class="card-body">
+                                    <div class="media">
+                                        <div class="media-title">
+                                            <div>
+                                                <i class='bx bx-trending-up profit--icon payments-icon positive'></i>
+                                                <span class="card-label positive">Profit / Loss Report</span>
+                                            </div>
+
+                                            <div class="card-content">
+                                                <h5>52.001.365</h5>
+                                                <span class="card-info">+3.226 than Last Month &uarr;</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                <div class="card payments-card processed-pays">
+                            <div class="card-content my-auto ">
+                                <div class="card-body">
+                                    <div class="media">
+                                        <div class="media-title">
+                                            <div>
+                                                <i class='bx bx-list-ul processed--icon payments-icon my-auto'></i>
+                                                <span class="card-label">Processed Payments</span>
+                                            </div>
+
+                                            <div class="card-content">
+                                                <h5>14 / 22</h5>
+                                                <span class="card-info">7 payments remaining</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
