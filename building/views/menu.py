@@ -15,3 +15,7 @@ def ApartmentsPage(request):
 
 def PaymentsPage(request):
     return render(request, 'building/menu/admin_payments.html')
+
+
+def DocumentsPage(request):
+    return render(request, 'building/menu/admin_documents.html')
