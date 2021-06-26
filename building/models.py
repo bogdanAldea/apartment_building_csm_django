@@ -22,6 +22,8 @@ class Building(models.Model):
     apartments_capacity = models.PositiveIntegerField()
     has_elevator        = models.BooleanField(default=False)
 
+    # TODO add new field for files/documents/pdfs
+
     def __str__(self):
         return f"<{self.street_name}, {self.street_number}>"
 
