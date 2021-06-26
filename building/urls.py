@@ -10,5 +10,5 @@ urlpatterns = [
     path("settings/", menu.SettingsPage, name="admin_settings"),
     path("apartments/", menu.ApartmentsPage, name="admin_apartments"),
     path("payments/", menu.PaymentsPage, name="admin_payments"),
-
+    path("documents/", menu.DocumentsPage, name="admin_documents"),
 ]
