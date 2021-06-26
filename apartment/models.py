@@ -1,5 +1,5 @@
 from django.db import models
-from building.models import CustomUser, Building
+from building.models import CustomUser, Building, Utility
 
 
 class Tenant(models.Model):
@@ -40,3 +40,29 @@ class Apartment(models.Model):
 
     def __str__(self):
         return f"<Apartment {self.number_id[{self.building}]}>"
+
+
+class MutualUtility(models.Model):
+    """
+    Defines mutual utility model. Each model points to a created utility object
+    with the pre defined type of 'mutual'.
+    """
+    apartment   = models.ForeignKey(Apartment, null=True, on_delete=models.CASCADE)
+    utility     = models.ForeignKey(Utility, null=True, on_delete=models.CASCADE)
+
+
+class PowerSupply(models.Model):
+    """
+    Defines individual utility model. Each model points to a created utility object
+    with the pre defined type of 'individual'.
+    """
+
+    STATUS = (
+        (True, 'Active'),
+        (False, 'Disabled')
+    )
+
+    apartment       = models.ForeignKey(Apartment, null=True, on_delete=models.CASCADE)
+    utility         = models.ForeignKey(Utility, null=True, on_delete=models.CASCADE)
+    index_counter   = models.IntegerField(default=0, null=True)
+    status          = models.BooleanField(default=False, null=True, blank=True, choices=STATUS)
