@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 
-class User(AbstractUser):
+class CustomUser(AbstractUser):
     """
     Defined custom user model
     """
@@ -15,14 +15,18 @@ class Building(models.Model):
     Model takes a one to one relationship with a user who has group of administrator.
     """
 
-    admin               = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    admin               = models.OneToOneField(CustomUser, null=True, blank=True, on_delete=models.CASCADE)
     street_name         = models.CharField(max_length=100, null=True)
     street_number       = models.PositiveIntegerField()
     postal_code         = models.CharField(max_length=10, null=True)
     apartments_capacity = models.PositiveIntegerField()
+    has_elevator        = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"<{self.street_name}, {self.street_number}>"
 
     def __repr__(self):
-        return f"{self.street_name}, {self.street_number}"
+        return f"<{self.street_name}, {self.street_number}>"
 
 
 class Utility(models.Model):
