@@ -7,4 +7,5 @@ urlpatterns = [
 
     # sidebar urls
     path('', menu.TenantDashboardPage, name='apt_dashboard'),
+    path('my-documents', menu.TenantDocumentsPage, name='apt_documents'),
 ]
