@@ -1,1 +1,210 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <title>Apartment X</title>
+
+    <div class="container-fluid apartment-dash-panel content-panel">
+
+        {#    Top row container    #}
+        <div class="row main-row">
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="page-title">
+                            <h1>My Dashboard</h1>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-5">
+                        <div class="card">
+                            <div class="card-content my-auto">
+                                <div class="card-body text-center my-3">
+
+                                    {#   User avatar   #}
+                                    <img src="../static/assets/avatar.png"
+                                        class="rounded-circle mb-2" height="80" width="80" alt=""/>
+
+                                    {#   User information   #}
+                                    <h4 class="">Bogdan Aldea</h4>
+                                    <p class="email-field">bogdan.aldea0623@gmail.com</p>
+                                    <a href="#" class="btn profile-update-btn">Update profile &rarr;</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-7">
+                <div class="card py-3 px-5">
+                    <div class="card-content my-auto">
+                        <div class="card-body text-left">
+                            <div class="row">
+
+                                {#      Apartment general information     #}
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <div class="info info-number">
+                                        <h6 class="apt-info-title">Surface Area</h6>
+                                        <p class="apt-info-value">55 m<sup>3</sup></p>
+                                    </div>
+                                    <div class="info info-address">
+                                        <h6 class="apt-info-title">Street Address</h6>
+                                        <p class="apt-info-value">Str. Cosminului Nr. 32</p>
+                                    </div>
+                                    <div class="info info-city">
+                                        <h6 class="apt-info-title">City</h6>
+                                        <p class="apt-info-value">Timisoara, jud. Timis</p>
+                                    </div>
+                                    <div class="info info-code">
+                                        <h6 class="apt-info-title">Postal Code</h6>
+                                        <p class="apt-info-value">300720</p>
+                                    </div>
+                                </div>
+
+                                {#      Apartment utility status information     #}
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <div class="util cold-w-status">
+                                        <h6 class="util-name">Cold Water Status</h6>
+                                        <div class="status-wrapper">
+                                            <i class='status-icon-active bx bxs-circle'></i>
+                                            <p class="status-tag">Active</p>
+                                        </div>
+                                    </div>
+                                    <div class="util hot-w-status">
+                                        <h6 class="util-name">Hot Water Status</h6>
+                                        <div class="status-wrapper">
+                                            <i class='status-icon-disabled bx bxs-circle'></i>
+                                            <p class="status-tag">Disabled</p>
+                                        </div>
+                                    </div>
+                                    <div class="util gas-status">
+                                        <h6 class="util-name">Gas Power Status</h6>
+                                        <div class="status-wrapper">
+                                            <i class='status-icon-active bx bxs-circle'></i>
+                                            <p class="status-tag">Active</p>
+                                        </div>
+                                    </div>
+                                    <div class="util heat-status">
+                                        <h6 class="util-name">Heating Power Status</h6>
+                                        <div class="status-wrapper">
+                                            <i class='status-icon-disabled bx bxs-circle'></i>
+                                            <p class="status-tag">Disabled</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="graph">
+                            <img class="graph-placeholder" src="{% static '/assets/graph.png' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                <div class="row right-row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                        <div class="card">
+                            <div class="tenant-util-row">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="index-buttons">
+                            <a href="#" class="btn general-btn update-index-btn">
+                                <i class='bx bxs-edit'></i>
+{#                                <span>Update Index</span>#}
+                            </a>
+                            <a href="#" class="btn general-btn submit-index-btn">
+                                <i class='bx bx-send'></i>
+{#                                <span>Submit Index</span>#}
+                            </a>
+                        </div>
+                                </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                                        <div class="card tenant-util-card">
+                                    <div class="card-content my-auto">
+                                        <div class="card-body">
+                                            <div class="media">
+                                                <div class="media-body text-center">
+                                                    <i class='bx bx-water index-icon hot-water-icon'></i>
+                                                    <h6 class="index-title">Hot Water</h6>
+                                                    <p class="m-0 index-counter">542368</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                                    <div class="card tenant-util-card">
+                                    <div class="card-content my-auto">
+                                        <div class="card-body">
+                                            <div class="media">
+                                                <div class="media-body text-center">
+                                                    <i class='bx bx-water index-icon hot-water-icon'></i>
+                                                    <h6 class="index-title">Hot Water</h6>
+                                                    <p class="m-0 index-counter">542368</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                                </div>
+
+                            </div>
+                                <div class="row mt-4">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                                    <div class="card tenant-util-card">
+                                <div class="card-content my-auto">
+                                    <div class="card-body">
+                                        <div class="media">
+                                            <div class="media-body text-center">
+                                                <i class='bx bx-water index-icon hot-water-icon'></i>
+                                                <h6 class="index-title">Hot Water</h6>
+                                                <p class="m-0 index-counter">542368</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                                    <div class="card tenant-util-card">
+                                <div class="card-content my-auto">
+                                    <div class="card-body">
+                                        <div class="media">
+                                            <div class="media-body text-center">
+                                                <i class='bx bx-water index-icon hot-water-icon'></i>
+                                                <h6 class="index-title">Hot Water</h6>
+                                                <p class="m-0 index-counter">542368</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                </div>
+
+                            </div>
+                            </div>
+
+                            <div class="tenant-notifications-row p-5">
+                                <h3>Notifications Board</h3>
+                            </div>
+
+                        </div>
+                </div>
+            </div>
+
+            </div>
+
+        </div>
+
+    </div>
+{% endblock content %}

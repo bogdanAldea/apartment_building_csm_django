@@ -24,12 +24,12 @@
                 {% if apartment.tenant %}
                     <td>{{ apartment.tenant.email }}</td>
                     <td>{{ apartment.tenant.phone }}</td>
-                    <td class="text-center"><a href="{% url 'residential:update-tenant' apartment.pk %}" class="btn tenant-btn update-tenant-btn">Update &rarr;</a></td>
+                    <td class="text-center"><a href="{% url 'residential:update-tenant' apartment.pk %}" class="btn general-button update-tenant-btn">Update &rarr;</a></td>
 
                 {% else %}
                     <td>Unavailable</td>
                     <td>Unavailable</td>
-                    <td class="text-center"><a href="{% url 'residential:assign-tenant' apartment.pk %}" class="btn tenant-btn add-tenant-btn">Add &rarr;</a></td>
+                    <td class="text-center"><a href="{% url 'residential:assign-tenant' apartment.pk %}" class="btn general-button add-tenant-btn">Add &rarr;</a></td>
 
                 {% endif %}
             </tr>
