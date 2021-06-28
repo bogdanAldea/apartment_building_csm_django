@@ -1,12 +1,21 @@
 @import "../00_design_system/00_system_package.css";
 
-/*  TABLE ACTION BUTTON */
 
-.general-table-btn {
+.general-button {
     font-size: 11px;
     font-family: var(--medium-font);
+}
+
+/*               */
+
+.general-table-btn, .profile-update-btn, .update-index-btn, .submit-index-btn,
+.edit-util-btn, .export-table-btn, .add-mutual-util-btn {
     background-color: var(--accent);
     color: var(--light);
+}
+
+.submit-index-btn {
+    background: lightseagreen;
 }
 
 .utility-icon {

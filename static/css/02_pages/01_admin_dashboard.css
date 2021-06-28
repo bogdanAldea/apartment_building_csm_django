@@ -1,23 +1,11 @@
 @import "../00_design_system/03_variables.css";
 
-.card, .analytics-row, .cards-row, .table-row {
+.analytics-row, .cards-row, .table-row {
     height: 100%;
 }
 
 .table-row {
     padding: 0 15px;
-}
-
-.card-title {
-    font-family: var(--regular-font);
-    font-size: 12px;
-    color: var(--dark);
-}
-
-.card-detail {
-    font-family: var(--medium-font);
-    font-size: 20px;
-    color: var(--dark);
 }
 
 .left-container {
@@ -38,12 +26,6 @@
 
 .index-icon {
     font-size: 24px;
-}
-
-.index-title {
-    font-family: var(--light-font);
-    font-size: 14px;
-    color: var(--dark);
 }
 
 .index-counter {
@@ -67,4 +49,3 @@
 .heating-power-icon {
     color: coral;
 }
-

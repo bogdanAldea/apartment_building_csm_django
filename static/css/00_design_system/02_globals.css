@@ -41,3 +41,25 @@ a {
     font-size: 12px;
     border: none;
 }
+
+/*================================================*/
+/*===           FONT SETTINGS                 ====*/
+/*================================================*/
+
+h1 {
+    font-family: var(--light-font);
+    font-size: 24px;
+    color: var(--light-grey);
+}
+
+h3 {
+    font-family: var(--medium-font);
+    font-size: 20px;
+    color: var(--light-grey);
+}
+
+h6 {
+    font-family: var(--medium-font);
+    font-size: 12px;
+    color: var(--light-grey);
+}

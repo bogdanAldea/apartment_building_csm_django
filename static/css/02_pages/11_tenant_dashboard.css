@@ -1,0 +1,72 @@
+@import "../00_design_system/03_variables.css";
+
+.email-field {
+    font-family: var(--light-font);
+    font-size: 16px;
+    color: #bebebe;
+}
+
+.tenant-profile-row, .right-row {
+    height: 100%;
+}
+
+.util-name, .apt-info-title {
+    font-family: var(--bold-font);
+    font-size: 12px;
+    color: #9FA8B0;
+}
+
+.info {
+    margin-bottom: 1rem;
+}
+
+.status-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.status-tag, .apt-info-value {
+    margin: 0;
+    font-size: 12px;
+    font-family: var(--medium-font);
+    color: var(--dark);
+}
+
+.status-tag {
+    margin-left: 15px;
+}
+
+.status-icon-active, .status-icon-disabled {
+    font-size: 16px;
+}
+
+.status-icon-active {
+   color: lightseagreen;
+}
+
+.status-icon-disabled {
+   color: orangered;
+}
+
+.graph-placeholder {
+    max-width: 100%;
+    border-radius: 15px;
+}
+
+.tenant-util-row {
+    padding-bottom: 24px;
+    background: var(--2nd-background);
+}
+
+.tenant-util-card {
+    box-shadow: none!important;
+}
+
+.index-buttons {
+   text-align: end;
+}
+
+.page-title, .index-buttons {
+    height: 60px;
+}

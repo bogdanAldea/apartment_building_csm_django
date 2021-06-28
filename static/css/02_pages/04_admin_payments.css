@@ -1,11 +1,9 @@
 @import "../00_design_system/03_variables.css";
+
+
 /*********************************/
 /*          FIRST ROW           */
 /*******************************/
-
-.card-content h5{
-    font-family: var(--bold-font);
-}
 
 .card-info{
     font-size: 11px;
@@ -15,13 +13,6 @@
 .payments-icon {
     font-size: 24px;
     color: var(--accent);
-}
-
-.card-label {
-    font-size: 11px;
-    font-family: var(--medium-font);
-    color: var(--dark-accent);
-    text-transform: uppercase;
 }
 
 .negative {
