@@ -1,0 +1,56 @@
+@import "../00_design_system/00_system_package.css";
+
+.form-body-full {
+    margin: 0;
+    padding: 0;
+}
+
+.presentation-col, .form-col {
+    height: 100vh;
+}
+
+
+.presentation-col {
+    background: var(--dark-accent);
+}
+
+.form-app-logo {
+    color: var(--light-grey);
+    font-size: 64px;
+    background: var(--light);
+    padding: 15px;
+    border-radius: 16px;
+}
+
+.form-app-name {
+    font-family: var(--black-font);
+    font-size: 32px;
+    color: var(--light);
+}
+
+.form-app-desc {
+    font-family: var(--light-font);
+    font-size: 16px;
+    color: var(--light);
+}
+
+.header-cta {
+    float: right;
+}
+
+.auth-btn {
+    font-family: var(--medium-font);
+    font-size: 11px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    border: 2px solid var(--dark-accent);
+    border-radius: 0;
+    color: var(--dark-accent);
+    transition: 0.5s;
+}
+
+.auth-btn:hover {
+    background: var(--dark-accent);
+    color: var(--light);
+    transition: 0.5s;
+}
