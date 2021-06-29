@@ -1,0 +1,56 @@
+{% extends 'base_form.html' %}
+{% load static %}
+
+
+{% block form_content %}
+
+    <form action="" method="POST" class="custom-form">
+        {% csrf_token %}
+
+        <div class="form-title text-center mb-5">
+            <h1 class="form-action-text">Create your new residential.</h1>
+        </div>
+
+        <div class="row field-row address-field-row mb-4">
+            <div class="field label address-label-field col-md-12"><label for="">Street Name</label></div>
+            <div class="field input address-input-field col-md-12">{{ form.street_name }}</div>
+        </div>
+
+        <div class="row field-row apartments-field-row mb-4">
+            <div class="field label apartments-label-field col-md-12"><label for="">Street Number</label></div>
+            <div class="field input apartments-input-field col-md-12">{{ form.street_number }}</div>
+        </div>
+
+        <div class="row field-row apartments-field-row mb-4">
+            <div class="field label apartments-label-field col-md-12"><label for="">City</label></div>
+            <div class="field input apartments-input-field col-md-12">{{ form.city }}</div>
+        </div>
+
+        <div class="row field-row apartments-field-row mb-4">
+            <div class="field label apartments-label-field col-md-12"><label for="">County</label></div>
+            <div class="field input apartments-input-field col-md-12">{{ form.county }}</div>
+        </div>
+
+        <div class="row field-row apartments-field-row mb-4">
+            <div class="field label apartments-label-field col-md-12"><label for="">Postal Code</label></div>
+            <div class="field input apartments-input-field col-md-12">{{ form.postal_code }}</div>
+        </div>
+
+        <div class="row field-row apartments-field-row mb-4">
+            <div class="field label apartments-label-field col-md-12"><label for="">Apartment Capacity</label></div>
+            <div class="field input apartments-input-field col-md-12">{{ form.apartments_capacity }}</div>
+        </div>
+
+        <div class="row field-row apartments-field-row mb-4">
+            <div class="field label apartments-label-field col-md-12"><label for="">Elevator Status</label></div>
+            <div class="field input elevator-status-field col-md-12">{{ form.has_elevator }}</div>
+        </div>
+
+        <div class="row field-row apartments-field-row mt-5">
+            <div class="col-md-12">
+                <button type="submit" class="col-md-12 btn general-button create-residential-btn">Create residential &rarr;</button>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}
