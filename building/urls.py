@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import menu, auth
+from .views import menu, auth, create
 
 app_name = 'building'
 
@@ -16,4 +16,7 @@ urlpatterns = [
     path('register/', auth.RegisterPage, name='register'),
     path('login/', auth.LoginPage, name='login'),
     path('logout/', auth.LogoutUser, name='logout'),
+
+    # crud operations: CREATE
+    path('create-residential/', create.CreateResidentialBuilding, name='create-residential'),
 ]
