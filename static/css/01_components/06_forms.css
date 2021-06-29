@@ -13,6 +13,7 @@
 }
 
 .header-cta {
+    height: 50px;
     justify-content: end;
     float: right;
 }
