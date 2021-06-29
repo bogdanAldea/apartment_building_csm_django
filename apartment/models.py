@@ -30,7 +30,7 @@ class Apartment(models.Model):
 
     building        = models.ForeignKey(Building, on_delete=models.CASCADE)
     tenant          = models.OneToOneField(Tenant, null=True, blank=True, on_delete=models.SET_NULL)
-    surface_area    = models.IntegerField(blank=True)
+    surface_area    = models.IntegerField(blank=True, null=True)
     num_of_persons  = models.PositiveIntegerField(default=0)
     payment_status  = models.BooleanField(default=True, null=True, choices=PAYMENT_STATUS)
     debt            = models.FloatField(default=0)
@@ -39,7 +39,7 @@ class Apartment(models.Model):
     number_id       = models.IntegerField()
 
     def __str__(self):
-        return f"<Apartment {self.number_id[{self.building}]}>"
+        return f"<Apartment {self.number_id}[{self.building}]>"
 
 
 class MutualUtility(models.Model):
@@ -66,3 +66,6 @@ class PowerSupply(models.Model):
     utility         = models.ForeignKey(Utility, null=True, on_delete=models.CASCADE)
     index_counter   = models.IntegerField(default=0, null=True)
     status          = models.BooleanField(default=False, null=True, blank=True, choices=STATUS)
+
+    def __str__(self):
+        return f"<{self.utility.name}[Apartment {self.apartment.number_id}]>"

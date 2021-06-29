@@ -63,7 +63,7 @@ class Utility(models.Model):
     tax_type        = models.BooleanField(null=True, choices=TAX_TYPE)
     building        = models.ForeignKey(Building, on_delete=models.CASCADE)
 
-    def __repr__(self):
+    def __str__(self):
         return f"{self.name}: {self.building}"
 
 
@@ -73,3 +73,6 @@ class MainUtil(models.Model):
 
     util = models.ForeignKey(Utility, on_delete=models.CASCADE)
     index_counter = models.PositiveIntegerField(default=0, null=True)
+
+    def __str__(self):
+        return f"<{self.util.name}[{self.util.building}]>"
