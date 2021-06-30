@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row justify-content-center form-row">
+        <form action="" method="POST" class="custom-form update-main-counters-form">
+            {% csrf_token %}
+
+            <div class="form-title text-left mb-5">
+                <h1 class="form-action-text">Update</h1>
+            </div>
+
+            <div class="row form-fields-row">
+                <table class="table table-borderless general-table">
+
+                    <thead class="general-table-head">
+                        <tr class="general-table-title-copy">
+                            <th class="table-title-col" colspan="4">Update counter: {{ utility.util.name }}</th>
+                        </tr>
+
+                        <tr>
+                            <th>Current Index</th>
+                            <th>Last Index</th>
+{#                            <th>Difference</th>#}
+                            <th>New Index</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="general-table-body">
+                    {% for counter in counters %}
+                        {% if counter.id == utility.id %}
+                            <tr class="general-table-row">
+                                <td>{{ counter.util.name }}</td>
+{#                                <td>0</td>#}
+                                <td>0</td>
+
+                            {% for field in form %}
+                                <td>{{ field }}</td>
+                            {% endfor %}
+                                <td class="text-center"><button class="btn general-button edit-util-btn" type="submit">Update &rarr;</button></td>
+                            </tr>
+                        {% else %}
+                             <tr class="general-table-row">
+                                <td>{{ counter.util.name }}</td>
+                                <td>0</td>
+{#                                <td>0</td>#}
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </form>
+    </div>
+{% endblock %}

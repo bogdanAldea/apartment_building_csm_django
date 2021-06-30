@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row justify-content-center form-row">
+    <form action="" method="POST" class="custom-form utility-form">
+
+        <div class="form-title text-left mb-5">
+            <h1 class="form-action-text">Add new utility.</h1>
+        </div>
+
+        <div class="row inner-form-row">
+
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="row field-row mb-4">
+            <div class="field label col-md-12"><label for="">Utility Name</label></div>
+            <div class="field input col-md-12">{{ form.name }}</div>
+        </div>
+            <div class="row field-row mb-4">
+            <div class="field label col-md-12"><label for="">Utility Type</label></div>
+            <div class="field input col-md-12">{{ form.util_type }}</div>
+        </div>
+            <div class="row field-row apartments-field-row mb-4">
+            <div class="field label col-md-12"><label for="">Utility Provider</label></div>
+            <div class="field input col-md-12">{{ form.provider }}</div>
+        </div>
+            <div class="row field-row apartments-field-row mb-4">
+            <div class="field label col-md-12"><label for="">Contract Start</label></div>
+            <div class="field input col-md-12">{{ form.contract_starts }}</div>
+        </div>
+        </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+
+                <div class="row field-row apartments-field-row mb-4">
+                <div class="field label col-md-12"><label for="">Contract End</label></div>
+                <div class="field input col-md-12">{{ form.contract_ends }}</div>
+            </div>
+                <div class="row field-row apartments-field-row mb-4">
+                <div class="field label col-md-12"><label for="">Utility Tax/Wage</label></div>
+                <div class="field input col-md-12">{{ form.tax_or_wage }}</div>
+            </div>
+                <div class="row field-row apartments-field-row mb-4">
+                <div class="field label col-md-12"><label for="">Utility Tax Type</label></div>
+                <div class="field input col-md-12">{{ form.tax_type }}</div>
+            </div>
+
+                <div class="row field-row">
+                    <div class="col-md-12 submit-button-col">
+                        <button type="submit" class="col-md-12 btn create-btn">Add utility &rarr;</button>
+                    </div>
+                </div>
+        </div>
+
+        </div>
+    </form>
+    </div>
+
+{% endblock %}

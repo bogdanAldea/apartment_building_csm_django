@@ -34,6 +34,9 @@ def initialize_building(sender, instance, created, **kwargs):
         for util in utilities:
             MainUtil.objects.create(util=util)
 
+        if instance.has_elevator:
+            Utility.objects.create(name='Elevator', provider='Private', building=instance, util_type='Mutual')
+
         # create new apartment objects
         for number in range(1, apartments_to_create+1):
             Apartment.objects.create(number_id=number, building=instance)
@@ -50,7 +53,13 @@ def initialize_apartment(sender, instance, created, **kwargs):
 
         # for each created apartment, add an individual utility
         for util in utilities:
-            PowerSupply.objects.create(apartment=instance, utility=util)
+            if util.util_type == 'Individual':
+                if util.name == "Cold Water":
+                    PowerSupply.objects.create(apartment=instance, utility=util, status=True)
+                else:
+                    PowerSupply.objects.create(apartment=instance, utility=util)
+            else:
+                MutualUtility.objects.create(apartment=instance, utility=util)
 
 
 post_save.connect(initialize_building, sender=Building)

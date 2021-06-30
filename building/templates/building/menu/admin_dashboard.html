@@ -153,41 +153,54 @@
                     </div>
                     </div>
 
-
-                    <div class="row mt-4">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-                        <div class="card">
-                                <div class="card-content my-auto">
-                                    <div class="card-body">
-                                        <div class="media">
-                                            <div class="media-body text-center">
-                                                <i class='bx bx-water index-icon hot-water-icon'></i>
-                                                <h6 class="index-title">Hot Water</h6>
-                                                <p class="m-0 index-counter">542368</p>
-                                            </div>
+                    {% if utils_are_empty %}
+                        <div class="row mt-4">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="card">
+                                    <div class="card-content my-auto">
+                                        <div class="card-body text-center">
+                                            <p>Update your utilities' index counters.</p>
+                                            <a href="" class="btn general-button update-index-btn">Update</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                    </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-                        <div class="card">
-                                <div class="card-content my-auto">
-                                    <div class="card-body">
-                                        <div class="media">
-                                            <div class="media-body text-center">
-                                                <i class='bx bx-water index-icon cold-water-icon'></i>
-                                                <h6 class="index-title">Cold Water</h6>
-                                                <p class="m-0 index-counter">542368</p>
+                        </div>
+                    {% else %}
+                        <div class="row mt-4">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                            <div class="card">
+                                    <div class="card-content my-auto">
+                                        <div class="card-body">
+                                            <div class="media">
+                                                <div class="media-body text-center">
+                                                    <i class='bx bx-water index-icon hot-water-icon'></i>
+                                                    <h6 class="index-title">Hot Water</h6>
+                                                    <p class="m-0 index-counter">542368</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                    </div>
-                    </div>
+                        </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                            <div class="card">
+                                    <div class="card-content my-auto">
+                                        <div class="card-body">
+                                            <div class="media">
+                                                <div class="media-body text-center">
+                                                    <i class='bx bx-water index-icon cold-water-icon'></i>
+                                                    <h6 class="index-title">Cold Water</h6>
+                                                    <p class="m-0 index-counter">542368</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        </div>
 
-                    <div class="row mt-4">
+                        <div class="row mt-4">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
                         <div class="card">
                                 <div class="card-content my-auto">
@@ -219,6 +232,7 @@
                             </div>
                     </div>
                     </div>
+                    {% endif %}
 
                 </section>
             </div>
