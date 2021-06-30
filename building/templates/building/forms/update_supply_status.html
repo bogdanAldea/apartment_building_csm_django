@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row justify-content-center form-row">
+    <form action="" method="POST" class="custom-form">
+
+        <div class="form-title text-left mb-5">
+            <h1 class="title">Update status.</h1>
+        </div>
+
+        <div class="row form-fields-row">
+            <table class="table general-table table-borderless">
+                <thead class="general-table_head">
+                    <tr>
+                        <th>Utility</th>
+                        <th>Status</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+
+                <tbody class="general-table-body">
+                    {% for item, form in form_data %}
+                        <tr class="general-table-row">
+                            <td>{{ item }}</td>
+                            <td>{{ form.status }}</td>
+                            <td>{{ form.DELETE }}</td>
+{#                            <td>{{ form.id }}</td>#}
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td>{{ persons_form }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="btn edit-util-btn" type="submit">Update &rarr;</button>
+        </div>
+
+    </form>
+    </div>
+{% endblock %}

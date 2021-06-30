@@ -22,5 +22,6 @@ urlpatterns = [
     path('create-utility/', create.CreateUtility, name='create_utility'),
 
     # crud operations: UPDATE
-    path('main-utils/<int:pk>/update/', update.UpdateMainCounters, name='update_main_utils'),
+    path('main-utils/<int:pk>/update-index/', update.UpdateMainCounters, name='update_main_utils-index'),
+    path('main-utils/<int:pk>/update-status/', update.UpdateUtilityStatus, name='update_main_utils-status'),
 ]
